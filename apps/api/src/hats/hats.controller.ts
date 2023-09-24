@@ -8,7 +8,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { HatsService } from './hats.service';
-import { CreateHatDto } from './dto/CreateHatDto';
+import { CreateHatDto } from './dto/create-hat.dto';
 
 @Controller('hats')
 export class HatsController {
