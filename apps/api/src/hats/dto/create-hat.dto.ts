@@ -1,13 +1,30 @@
+import { HasMimeType, IsFile, MemoryStoredFile } from 'nestjs-form-data';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { HatNameNotRegistered } from '../validation-rules/hat-name-not-registered.rule';
-import { HatStyle } from '../types';
+
 import { IsValidColor } from '../validation-rules/is-valid-color.rule';
+import { HatNameNotRegistered } from '../validation-rules/hat-name-not-registered.rule';
+
+import { HatStyle } from '../types';
 
 export class CreateHatDto {
-  @IsNotEmpty({ message: 'name should not be empty' })
+  @IsNotEmpty({ message: 'The hat name should not be empty.' })
   @IsString({ message: 'You should provide a valid name for the hat.' })
-  @HatNameNotRegistered()
+  @HatNameNotRegistered({
+    message: 'It appears you have already registered this hat.',
+  })
   name: string;
+
+  @IsNotEmpty({ message: 'You should provide a valid image for the hat.' })
+  @IsFile({ message: "'image' should be a valid file" })
+  @HasMimeType([
+    'image/jpeg',
+    'image/png',
+    'image/x-png',
+    'image/svg+xml',
+    'image/webp',
+    'image/avif',
+  ])
+  image: MemoryStoredFile;
 
   @IsNotEmpty({
     message: 'You need to define the list of sizes available for this hat.',
@@ -23,14 +40,14 @@ export class CreateHatDto {
   colors: string[];
 
   @IsNotEmpty({
-    message: 'The hat style should be one of the following ' + HatStyle,
+    message: "The hat 'style' should not be empty.",
   })
   @IsEnum(HatStyle)
   style: HatStyle;
 
   @IsNotEmpty({
-    message: 'Provide a clear description of the hat being registered.',
+    message: 'Provide clear details of the hat being registered.',
   })
-  @IsString()
+  @IsString({ message: "Make sure 'details' is a string" })
   details: string;
 }

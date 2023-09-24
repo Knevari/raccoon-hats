@@ -6,13 +6,12 @@ import {
   Put,
   Delete,
   Param,
-  UseInterceptors,
-  BadRequestException,
-  UploadedFile,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { HatsService } from './hats.service';
 import { CreateHatDto } from './dto/create-hat.dto';
-import LocalFilesInterceptor from '../local-files/interceptors/local-files.interceptor';
+import { FormDataRequest } from 'nestjs-form-data';
 
 const fiveMb = Math.pow(1024, 2) * 5;
 
@@ -21,47 +20,32 @@ export class HatsController {
   constructor(private readonly hatsService: HatsService) {}
 
   @Get('/api/products')
+  @HttpCode(HttpStatus.OK)
   async getHats() {
     return this.hatsService.getHats();
   }
 
   @Post('api/products')
-  @UseInterceptors(
-    LocalFilesInterceptor({
-      fieldName: 'file',
-      path: '/images/hats',
-      fileFilter: (_, file, callback) => {
-        if (!file.mimetype.includes('image')) {
-          return callback(
-            new BadRequestException(
-              "Provide a valid image and make sure it's size is below 5mb",
-            ),
-            false,
-          );
-        }
-        callback(null, true);
-      },
-      limits: {
-        fileSize: fiveMb,
-      },
-    }),
-  )
-  async createHat(@Body() dto: CreateHatDto, @UploadedFile() file: File) {
-    console.log({ file });
+  @FormDataRequest()
+  @HttpCode(HttpStatus.CREATED)
+  async createHat(@Body() dto: CreateHatDto) {
     return this.hatsService.createHat(dto);
   }
 
   @Get('/api/products/:id')
+  @HttpCode(HttpStatus.OK)
   async getHatByID(@Param('id') id: string) {
     return this.hatsService.getHatByID(id);
   }
 
   @Put('/api/products/:id')
+  @HttpCode(HttpStatus.OK)
   async updateHatByID(@Param('id') id: string) {
     return this.hatsService.updateHatByID(id);
   }
 
   @Delete('/api/products/:id')
+  @HttpCode(HttpStatus.OK)
   async deleteHatByID(@Param('id') id: string) {
     return this.hatsService.deleteHatByID(id);
   }

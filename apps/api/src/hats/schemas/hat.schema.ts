@@ -3,7 +3,6 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
 
 import { HatStyle } from '../types';
-import { LocalFile } from 'src/local-files/schemas/local-file.schema';
 
 export type HatDocument = HydratedDocument<Hat>;
 
@@ -15,11 +14,8 @@ export class Hat {
   @Prop({ required: false })
   slug: string;
 
-  @Prop({ type: Types.ObjectId, ref: LocalFile.name, required: true })
-  image: Types.ObjectId;
-
-  @Prop({ required: false })
-  imageId: string;
+  @Prop({ required: true })
+  imageUrl: string;
 
   @Prop({ required: true })
   sizes: string[];
