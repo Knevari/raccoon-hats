@@ -10,7 +10,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { HatsService } from './hats.service';
-import { CreateHatDto } from './dto/create-hat.dto';
+import { CreateHatDto, UpdateHatDto } from './dto';
 import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller('/api')
@@ -38,8 +38,8 @@ export class HatsController {
 
   @Put('/products/:id')
   @HttpCode(HttpStatus.OK)
-  async updateHatByID(@Param('id') id: string) {
-    return this.hatsService.updateHatByID(id);
+  async updateHatByID(@Param('id') id: string, dto: UpdateHatDto) {
+    return this.hatsService.updateHatByID(id, dto);
   }
 
   @Delete('/products/:id')

@@ -26,3 +26,13 @@ export enum HatSize {
   'XL',
   'XXL',
 }
+
+export const availableSizes: string[] = Object.keys(HatSize).filter((item) => {
+  return isNaN(Number(item));
+});
+
+export const availableStyles: string[] = Object.keys(HatStyle).filter(
+  (item) => {
+    return isNaN(Number(item));
+  },
+);
