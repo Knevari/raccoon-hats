@@ -1,10 +1,21 @@
-import { HasMimeType, IsFile, MemoryStoredFile } from 'nestjs-form-data';
+import {
+  HasMimeType,
+  IsFile,
+  MaxFileSize,
+  MemoryStoredFile,
+} from 'nestjs-form-data';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
 import { IsValidColor } from '../validation-rules/is-valid-color.rule';
 import { HatNameNotRegistered } from '../validation-rules/hat-name-not-registered.rule';
 
 import { HatStyle } from '../types';
+
+const fiveMb = 5 * 10 ** 6;
+
+const availableStyles = Object.keys(HatStyle).filter((item) => {
+  return isNaN(Number(item));
+});
 
 export class CreateHatDto {
   @IsNotEmpty({ message: 'The hat name should not be empty.' })
@@ -24,6 +35,7 @@ export class CreateHatDto {
     'image/webp',
     'image/avif',
   ])
+  @MaxFileSize(fiveMb)
   image: MemoryStoredFile;
 
   @IsNotEmpty({
@@ -42,7 +54,9 @@ export class CreateHatDto {
   @IsNotEmpty({
     message: "The hat 'style' should not be empty.",
   })
-  @IsEnum(HatStyle)
+  @IsEnum(HatStyle, {
+    message: `The hat 'style' should be one of the following: ${availableStyles}`,
+  })
   style: HatStyle;
 
   @IsNotEmpty({

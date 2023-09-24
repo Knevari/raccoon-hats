@@ -10,7 +10,9 @@ export class HatsService {
 
   async getHats() {}
 
-  async createHat(dto: CreateHatDto) {}
+  async createHat(dto: CreateHatDto) {
+    console.log(dto);
+  }
 
   async getHatByID(id: string) {}
 
