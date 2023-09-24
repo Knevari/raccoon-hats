@@ -15,12 +15,8 @@ export class HatsService {
   async getHatByID(id: string) {}
 
   async getHatByName(name: string) {
-    try {
-      const hat = await this.hatModel.findOne({ name });
-      return hat;
-    } catch (error) {
-      // do something here
-    }
+    const hat = await this.hatModel.findOne({ name });
+    return hat;
   }
 
   async updateHatByID(id: string) {}

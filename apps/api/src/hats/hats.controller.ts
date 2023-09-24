@@ -6,9 +6,15 @@ import {
   Put,
   Delete,
   Param,
+  UseInterceptors,
+  BadRequestException,
+  UploadedFile,
 } from '@nestjs/common';
 import { HatsService } from './hats.service';
 import { CreateHatDto } from './dto/create-hat.dto';
+import LocalFilesInterceptor from '../local-files/interceptors/local-files.interceptor';
+
+const fiveMb = Math.pow(1024, 2) * 5;
 
 @Controller('hats')
 export class HatsController {
@@ -20,7 +26,28 @@ export class HatsController {
   }
 
   @Post('api/products')
-  async createHat(@Body() dto: CreateHatDto) {
+  @UseInterceptors(
+    LocalFilesInterceptor({
+      fieldName: 'file',
+      path: '/images/hats',
+      fileFilter: (_, file, callback) => {
+        if (!file.mimetype.includes('image')) {
+          return callback(
+            new BadRequestException(
+              "Provide a valid image and make sure it's size is below 5mb",
+            ),
+            false,
+          );
+        }
+        callback(null, true);
+      },
+      limits: {
+        fileSize: fiveMb,
+      },
+    }),
+  )
+  async createHat(@Body() dto: CreateHatDto, @UploadedFile() file: File) {
+    console.log({ file });
     return this.hatsService.createHat(dto);
   }
 
