@@ -19,9 +19,10 @@ export enum HatStyle {
   'Ivy Caps & Flat Caps',
 }
 
-export enum HatSizes {
-  'SM',
-  'MD',
-  'LG',
+export enum HatSize {
+  'S',
+  'M',
+  'L',
   'XL',
+  'XXL',
 }

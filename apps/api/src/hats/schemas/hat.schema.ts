@@ -1,8 +1,7 @@
 import { HydratedDocument } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Types } from 'mongoose';
 
-import { HatStyle } from '../types';
+import { HatSize, HatStyle } from '../types';
 
 export type HatDocument = HydratedDocument<Hat>;
 
@@ -15,15 +14,18 @@ export class Hat {
   slug: string;
 
   @Prop({ required: true })
-  imageUrl: string;
+  price: number;
 
   @Prop({ required: true })
-  sizes: string[];
+  imageUrl: string;
+
+  @Prop({ required: true, enum: HatSize, type: [String] })
+  sizes: HatSize[];
 
   @Prop({ required: true })
   colors: string[];
 
-  @Prop({ required: true, enum: HatStyle })
+  @Prop({ required: true, enum: HatStyle, type: String })
   style: HatStyle;
 
   @Prop({ required: true })
