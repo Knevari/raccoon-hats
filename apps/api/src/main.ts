@@ -14,6 +14,12 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    credentials: true,
+    origin: ['http://localhost:3000'],
+    methods: 'GET,HEAD,PUT,POST,DELETE,OPTIONS',
+  });
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   await app.listen(process.env.PORT || 8000);

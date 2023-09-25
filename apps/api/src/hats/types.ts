@@ -1,6 +1,6 @@
 export enum HatStyle {
   'Army Cap',
-  'Baseball Bat & Sport Caps',
+  'Baseball & Sport Caps',
   'Beret',
   'Boater',
   'Bolero',
@@ -17,6 +17,7 @@ export enum HatStyle {
   'Hat Care',
   'Homburg',
   'Ivy Caps & Flat Caps',
+  'Pull-Ons & Beanies',
 }
 
 export enum HatSize {
