@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Hat } from "../../contexts/hats";
 
-export interface HatCardProps
-  extends Pick<Hat, "name" | "price" | "imageUrl"> {}
+export interface HatCardProps extends Pick<Hat, "name" | "price" | "imageUrl"> {
+  onClick: () => void;
+}
 
-export function HatCard({ name, price, imageUrl }: HatCardProps) {
+export function HatCard({ name, price, imageUrl, onClick }: HatCardProps) {
   return (
     <div className="bg-white rounded-md shadow-md flex flex-col items-center">
       <div className="p-2">
@@ -24,7 +25,10 @@ export function HatCard({ name, price, imageUrl }: HatCardProps) {
           <h5 className="text-lg text-left text-text font-mono leading-6">
             ${price.toFixed(2)}
           </h5>
-          <button className="bg-primary text-white/90 px-3 py-2 rounded-md mt-3 hover:bg-accent transition">
+          <button
+            className="bg-primary text-white/90 px-3 py-2 rounded-md mt-3 hover:bg-accent transition"
+            onClick={onClick}
+          >
             View Full Page
           </button>
         </div>

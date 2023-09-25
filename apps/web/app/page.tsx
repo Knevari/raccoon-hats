@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductList } from "../components/product-list";
+import { AnimatePresence } from "framer-motion";
 
 export default function Page(): JSX.Element {
   return (
@@ -29,7 +31,9 @@ export default function Page(): JSX.Element {
         <section className="py-4">
           <h5 className="text-text/50 text-base">All Products</h5>
           <div className="py-4">
-            <ProductList />
+            <AnimatePresence mode="wait" initial={false}>
+              <ProductList />
+            </AnimatePresence>
           </div>
         </section>
       </main>

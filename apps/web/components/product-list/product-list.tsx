@@ -1,7 +1,11 @@
 "use client";
 
 import { useHatsContext } from "../../contexts/hats";
+
 import { HatCard } from "../hat-card";
+import { HatModal } from "../hat-modal";
+
+import useHatModal from "../../hooks/useHatModal";
 
 function ProductListSkeleton() {
   return (
@@ -36,11 +40,17 @@ function ProductListErrored() {
 }
 
 export function ProductList() {
+  const { openHatModalWith, closeHatModal, activeHat, isOpen } = useHatModal();
   const { hats, isLoading, isError } = useHatsContext();
 
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
       <ProductListContent />
+      <HatModal
+        activeHat={activeHat}
+        isOpen={isOpen}
+        onCloseModal={closeHatModal}
+      />
     </div>
   );
 
@@ -56,7 +66,12 @@ export function ProductList() {
     return (
       <>
         {hats.map((hat) => (
-          <HatCard name={hat.name} price={hat.price} imageUrl={hat.imageUrl} />
+          <HatCard
+            name={hat.name}
+            price={hat.price}
+            imageUrl={hat.imageUrl}
+            onClick={() => openHatModalWith(hat)}
+          />
         ))}
       </>
     );

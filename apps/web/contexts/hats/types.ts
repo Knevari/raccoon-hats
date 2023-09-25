@@ -35,4 +35,5 @@ export interface Hat {
   colors: string[];
   sizes: HatSize[];
   style: HatStyle;
+  details: string;
 }
