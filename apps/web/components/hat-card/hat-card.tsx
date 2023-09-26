@@ -7,7 +7,7 @@ export interface HatCardProps extends Pick<Hat, "name" | "price" | "imageUrl"> {
 
 export function HatCard({ name, price, imageUrl, onClick }: HatCardProps) {
   return (
-    <div className="bg-white rounded-md shadow-md flex flex-col items-center">
+    <div className="bg-white rounded-md shadow-md flex flex-col items-center justify-between">
       <div className="p-2">
         <div className="bg-accent rounded-lg p-6 shadow-layers">
           <Image

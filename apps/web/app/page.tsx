@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { ProductList } from "../components/product-list";
 import { AnimatePresence } from "framer-motion";
+import { AiOutlinePlus } from "react-icons/ai";
 
 export default function Page(): JSX.Element {
   return (
     <div className="container mx-auto">
-      <div className="flex items-center justify-center md:justify-between py-2 md:py-8">
+      <div className="flex items-center justify-between py-2 md:py-8 px-4">
         <div className="flex items-center gap-1">
           <Image
             alt="Raccoon Illustration"
@@ -20,12 +20,12 @@ export default function Page(): JSX.Element {
             Raccoon <span className="text-primary">Hats</span>
           </h4>
         </div>
-        <Link
-          className="bg-primary px-6 py-3 text-white/90 font-bold rounded-xl shadow-md tracking-wide hidden"
-          href="/admin"
+        <button
+          type="button"
+          className="flex items-center gap-2 bg-primary px-4 py-2 text-white/90 font-bold rounded-xl shadow-md tracking-wide"
         >
-          Wanna Edit?
-        </Link>
+          Add <AiOutlinePlus />
+        </button>
       </div>
       <main className="container mx-auto px-4">
         <section className="py-4">

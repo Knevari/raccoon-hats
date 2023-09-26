@@ -43,7 +43,7 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
 
   return (
     <div
-      className="fixed flex items-stretch inset-0 w-full h-full bg-transparent"
+      className="fixed flex flex-col md:flex-row items-stretch inset-0 w-full h-full bg-transparent overflow-y-auto md:overflow-y-visible"
       style={{ display: isOpen ? "flex" : "none" }}
     >
       <motion.div
@@ -66,7 +66,7 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
       <motion.div
         initial={false}
         animate={isOpen ? "open" : "closed"}
-        className="relative flex-1 bg-background px-[10%] py-12 max-w-1/2 overflow-y-auto"
+        className="relative flex-1 bg-background px-[10%] py-12 max-w-1/2 md:overflow-y-auto"
         variants={bodyVariants}
         transition={{ bounce: 0 }}
       >
