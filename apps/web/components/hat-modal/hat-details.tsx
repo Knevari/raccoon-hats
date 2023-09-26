@@ -1,5 +1,10 @@
-import { Hat } from "../../contexts/hats";
+import ReactMarkdown from "react-markdown";
+
 import { Divider } from "../divider";
+import { HatColor } from "./hat-color";
+import { HatSize } from "./hat-size";
+
+import { Hat } from "../../contexts/hats";
 
 export function HatDetails({
   name,
@@ -19,27 +24,18 @@ export function HatDetails({
         <div className="flex flex-wrap justify-between">
           <div className="flex gap-2 mt-8">
             {colors.map((color) => (
-              <div
-                key={color}
-                className="w-9 h-9"
-                style={{ backgroundColor: color }}
-              />
+              <HatColor key={color} color={color} />
             ))}
           </div>
           <div className="flex gap-2 mt-8">
             {sizes.map((size) => (
-              <strong
-                key={size}
-                className="flex items-center justify-center h-9 border-2 border-text/40 text-text/40 rounded-lg px-2"
-              >
-                {size}
-              </strong>
+              <HatSize key={size} size={size} />
             ))}
           </div>
         </div>
       </div>
       <Divider />
-      <p>{details}</p>
+      <ReactMarkdown>{details}</ReactMarkdown>
       <Divider />
       <div>
         <h5 className="text-base text-text/60">PRICE</h5>

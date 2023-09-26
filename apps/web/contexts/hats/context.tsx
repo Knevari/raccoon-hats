@@ -8,6 +8,7 @@ export interface HatsContextValue {
   hats: Hat[];
   isLoading: boolean;
   isError: boolean;
+  fetchHats: () => Promise<void>;
 }
 
 export const HatsContext = React.createContext({} as HatsContextValue);
@@ -43,6 +44,7 @@ export function HatsProvider({ children }: HatsProviderProps) {
     hats,
     isLoading,
     isError,
+    fetchHats,
   };
 
   return <HatsContext.Provider value={value}>{children}</HatsContext.Provider>;

@@ -29,6 +29,7 @@ export enum HatStyle {
 }
 
 export interface Hat {
+  _id: string;
   name: string;
   price: number;
   imageUrl: string;

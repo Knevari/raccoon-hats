@@ -37,8 +37,9 @@ export class HatsController {
   }
 
   @Put('/products/:id')
+  @FormDataRequest()
   @HttpCode(HttpStatus.OK)
-  async updateHatByID(@Param('id') id: string, dto: UpdateHatDto) {
+  async updateHatByID(@Param('id') id: string, @Body() dto: UpdateHatDto) {
     return this.hatsService.updateHatByID(id, dto);
   }
 

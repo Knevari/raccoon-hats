@@ -6,7 +6,13 @@ import {
 } from 'nestjs-form-data';
 
 import { Type } from 'class-transformer';
-import { IsEnum, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 import { HatNameNotRegistered } from '../validation-rules/hat-name-not-registered.rule';
 import { IsValidColor } from '../validation-rules/is-valid-color.rule';
@@ -26,6 +32,7 @@ export const availableStyles: string[] = Object.keys(HatStyle).filter(
 );
 
 export class UpdateHatDto {
+  @IsOptional()
   @IsNotEmpty({ message: 'The hat name should not be empty.' })
   @IsString({ message: 'You should provide a valid name for the hat.' })
   @HatNameNotRegistered({
@@ -33,6 +40,7 @@ export class UpdateHatDto {
   })
   name?: string;
 
+  @IsOptional()
   @IsNotEmpty({ message: "The hat 'price' should not be empty." })
   @Type(() => Number)
   @IsInt({
@@ -41,6 +49,7 @@ export class UpdateHatDto {
   })
   price?: number;
 
+  @IsOptional()
   @IsNotEmpty({ message: 'You should provide a valid image for the hat.' })
   @IsFile({ message: "'image' should be a valid file" })
   @HasMimeType([
@@ -54,6 +63,7 @@ export class UpdateHatDto {
   @MaxFileSize(fiveMb)
   image?: MemoryStoredFile;
 
+  @IsOptional()
   @IsNotEmpty({
     message: 'You need to define the list of sizes available for this hat.',
   })
@@ -63,6 +73,7 @@ export class UpdateHatDto {
   })
   sizes?: HatSize[];
 
+  @IsOptional()
   @IsNotEmpty({
     message: 'You need to define the list of colors available for this hat.',
   })
@@ -70,6 +81,7 @@ export class UpdateHatDto {
   @IsValidColor({ each: true })
   colors?: string[];
 
+  @IsOptional()
   @IsNotEmpty({
     message: "The hat 'style' should not be empty.",
   })
@@ -78,6 +90,7 @@ export class UpdateHatDto {
   })
   style?: HatStyle;
 
+  @IsOptional()
   @IsNotEmpty({
     message: 'Provide clear details of the hat being registered.',
   })

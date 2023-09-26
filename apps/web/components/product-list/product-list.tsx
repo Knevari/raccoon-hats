@@ -40,6 +40,8 @@ function ProductListErrored() {
 }
 
 export function ProductList() {
+  // For time saving purposes I will not separate this modal into a different
+  // route nor create a separate context for it, which would be the optimal solution.
   const { openHatModalWith, closeHatModal, activeHat, isOpen } = useHatModal();
   const { hats, isLoading, isError } = useHatsContext();
 

@@ -37,6 +37,10 @@ export interface HatModalProps {
 export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
   const [isEditing, setIsEditing] = useState(false);
 
+  const onToggleEdit = () => {
+    setIsEditing((prev) => !prev);
+  };
+
   return (
     <div
       className="fixed flex items-stretch inset-0 w-full h-full bg-transparent"
@@ -70,7 +74,10 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
           <div className="flex justify-between items-center text-text">
             <h5 className="text-accent">HAT</h5>
             <div className="flex gap-2">
-              <AiFillEdit className="text-4xl cursor-pointer" />
+              <AiFillEdit
+                className="text-4xl cursor-pointer"
+                onClick={onToggleEdit}
+              />
               <AiOutlineClose
                 className="text-4xl cursor-pointer"
                 onClick={onCloseModal}
@@ -85,6 +92,10 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
 
   function ModalContent() {
     if (!activeHat) return null;
-    return isEditing ? <HatEdit /> : <HatDetails {...activeHat} />;
+    return isEditing ? (
+      <HatEdit {...activeHat} onCloseModal={onCloseModal} />
+    ) : (
+      <HatDetails {...activeHat} />
+    );
   }
 }
