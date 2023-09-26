@@ -1,7 +1,14 @@
-import { motion } from "framer-motion";
-import { Hat } from "../../contexts/hats";
-import { Divider } from "../divider";
+import { useState } from "react";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { AiOutlineClose, AiFillEdit } from "react-icons/ai";
+
+import { HatEdit } from "./hat-edit";
+import { HatDetails } from "./hat-details";
+
+import { Hat } from "../../contexts/hats/types";
 
 const imageVariants = {
   open: {
@@ -28,6 +35,8 @@ export interface HatModalProps {
 }
 
 export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
     <div
       className="fixed flex items-stretch inset-0 w-full h-full bg-transparent"
@@ -53,55 +62,29 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
       <motion.div
         initial={false}
         animate={isOpen ? "open" : "closed"}
-        className="relative flex-1 bg-background px-[10%] py-12 max-w-1/2"
+        className="relative flex-1 bg-background px-[10%] py-12 max-w-1/2 overflow-y-auto"
         variants={bodyVariants}
         transition={{ bounce: 0 }}
       >
-        {activeHat && (
-          <div className="flex flex-col gap-8">
-            <div className="flex justify-between items-center text-text">
-              <h5>HAT</h5>
-              <small className="text-4xl cursor-pointer" onClick={onCloseModal}>
-                &times;
-              </small>
-            </div>
-            <div>
-              <div>
-                <h1 className="text-5xl text-primary">{activeHat.name}</h1>
-                <small className="text-text">{activeHat.style}</small>
-              </div>
-              <div className="flex flex-wrap justify-between">
-                <div className="flex gap-2 mt-8">
-                  {activeHat.colors.map((color) => (
-                    <div
-                      key={color}
-                      className="w-9 h-9"
-                      style={{ backgroundColor: color }}
-                    />
-                  ))}
-                </div>
-                <div className="flex gap-2 mt-8">
-                  {activeHat.sizes.map((size) => (
-                    <strong
-                      key={size}
-                      className="flex items-center justify-center h-9 border-2 border-text/40 text-text/40 rounded-lg px-2"
-                    >
-                      {size}
-                    </strong>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <Divider />
-            <p>{activeHat.details}</p>
-            <Divider />
-            <div>
-              <h5 className="text-base text-text/60">PRICE</h5>
-              <h3 className="text-accent">${activeHat.price.toFixed(2)}</h3>
+        <div className="flex flex-col gap-8">
+          <div className="flex justify-between items-center text-text">
+            <h5 className="text-accent">HAT</h5>
+            <div className="flex gap-2">
+              <AiFillEdit className="text-4xl cursor-pointer" />
+              <AiOutlineClose
+                className="text-4xl cursor-pointer"
+                onClick={onCloseModal}
+              />
             </div>
           </div>
-        )}
+          <ModalContent />
+        </div>
       </motion.div>
     </div>
   );
+
+  function ModalContent() {
+    if (!activeHat) return null;
+    return isEditing ? <HatEdit /> : <HatDetails {...activeHat} />;
+  }
 }
