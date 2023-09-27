@@ -9,6 +9,7 @@ import { HatEdit } from "./hat-edit";
 import { HatDetails } from "./hat-details";
 
 import { Hat } from "../../contexts/hats/types";
+import { useHijackScroll } from "../../hooks/useHijackScroll";
 
 const imageVariants = {
   open: {
@@ -36,6 +37,8 @@ export interface HatModalProps {
 
 export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const { registerForHijacking, hijackScroll, releaseScroll } =
+    useHijackScroll();
 
   const onToggleEdit = () => {
     setIsEditing((prev) => !prev);
@@ -69,6 +72,7 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
         className="relative flex-1 bg-background px-[10%] py-12 max-w-1/2 md:overflow-y-auto"
         variants={bodyVariants}
         transition={{ bounce: 0 }}
+        ref={(ref) => registerForHijacking(ref)}
       >
         <div className="flex flex-col gap-8">
           <div className="flex justify-between items-center text-text">
@@ -92,8 +96,14 @@ export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
 
   function ModalContent() {
     if (!activeHat) return null;
+
     return isEditing ? (
-      <HatEdit {...activeHat} onCloseModal={onCloseModal} />
+      <HatEdit
+        {...activeHat}
+        onCloseModal={onCloseModal}
+        onHijackScroll={hijackScroll}
+        onReleaseScroll={releaseScroll}
+      />
     ) : (
       <HatDetails {...activeHat} />
     );

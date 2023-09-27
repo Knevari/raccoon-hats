@@ -1,10 +1,18 @@
 "use client";
-import Image from "next/image";
-import { ProductList } from "../components/product-list";
 import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
 import { AiOutlinePlus } from "react-icons/ai";
 
+import { ProductList } from "../components/product-list";
+import { Modal } from "../components/modal";
+
+import { useToggle } from "../hooks/useToggle";
+import { AddHatModal } from "../components/add-hat-modal";
+
 export default function Page(): JSX.Element {
+  const [isAddModalOpen, onToggleAddModal] = useToggle();
+
   return (
     <div className="container mx-auto">
       <div className="flex items-center justify-between py-2 md:py-8 px-4">
@@ -23,6 +31,7 @@ export default function Page(): JSX.Element {
         <button
           type="button"
           className="flex items-center gap-2 bg-primary px-4 py-2 text-white/90 font-bold rounded-xl shadow-md tracking-wide"
+          onClick={onToggleAddModal}
         >
           Add <AiOutlinePlus />
         </button>
@@ -36,6 +45,7 @@ export default function Page(): JSX.Element {
             </AnimatePresence>
           </div>
         </section>
+        <AddHatModal isOpen={isAddModalOpen} onCloseModal={onToggleAddModal} />
       </main>
     </div>
   );

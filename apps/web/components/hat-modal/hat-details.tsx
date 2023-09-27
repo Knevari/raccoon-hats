@@ -22,12 +22,12 @@ export function HatDetails({
           <small className="text-text">{style}</small>
         </div>
         <div className="flex flex-wrap justify-between">
-          <div className="flex gap-2 mt-8">
+          <div className="flex flex-wrap gap-2 mt-8">
             {colors.map((color) => (
               <HatColor key={color} color={color} />
             ))}
           </div>
-          <div className="flex gap-2 mt-8">
+          <div className="flex flex-wrap gap-2 mt-8">
             {sizes.map((size) => (
               <HatSize key={size} size={size} />
             ))}

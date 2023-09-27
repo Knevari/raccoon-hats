@@ -38,3 +38,16 @@ export interface Hat {
   style: HatStyle;
   details: string;
 }
+
+export interface ValidationError {
+  property: string;
+  message: string;
+}
+
+export const availableHatSizes = Object.values(HatSize).filter((size) =>
+  isNaN(Number(size))
+);
+
+export const availableHatStyles = Object.values(HatStyle).filter((size) =>
+  isNaN(Number(size))
+);

@@ -14,7 +14,7 @@ function ProductListSkeleton() {
         return (
           <div
             key={i}
-            className="bg-neutral-400/20 rounded-md shadow-md flex flex-col items-center w-[240px]"
+            className="bg-neutral-400/20 rounded-md shadow-md flex flex-col items-center md:w-[240px]"
           >
             <div className="p-2 w-full">
               <div className="bg-neutral-400/60 rounded-lg p-6 shadow-layers-skeleton w-full animate-pulse">
@@ -46,7 +46,7 @@ export function ProductList() {
   const { hats, isLoading, isError } = useHatsContext();
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
+    <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
       <ProductListContent />
       <HatModal
         activeHat={activeHat}
