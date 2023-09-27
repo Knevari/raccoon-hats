@@ -37,6 +37,7 @@ export interface HatModalProps {
 
 export function HatModal({ activeHat, isOpen, onCloseModal }: HatModalProps) {
   const [isEditing, setIsEditing] = useState(false);
+  
   const { registerForHijacking, hijackScroll, releaseScroll } =
     useHijackScroll();
 

@@ -25,7 +25,7 @@ function ProductListSkeleton() {
               <h5 className="w-full h-5 bg-neutral-400/60 rounded-lg animate-pulse"></h5>
               <div className="flex flex-col items-stretch justify-between flex-wrap w-full">
                 <h5 className="w-1/2 h-4 bg-neutral-400/60 mt-2"></h5>
-                <button className="bg-neutral-400/60 h-10 text-white/90 px-3 py-2 rounded-md mt-3 hover:bg-accent transition animate-pulse"></button>
+                <button className="bg-neutral-400/60 h-10 text-white/90 px-3 py-2 rounded-md mt-3 transition animate-pulse"></button>
               </div>
             </div>
           </div>

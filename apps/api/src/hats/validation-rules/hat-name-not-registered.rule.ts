@@ -16,7 +16,6 @@ export class HatNameNotRegisteredValidator
 
   async validate(name: any) {
     const hat = await this.hatsService.getHatByName(name);
-    console.log(hat);
     return !Boolean(hat);
   }
 }

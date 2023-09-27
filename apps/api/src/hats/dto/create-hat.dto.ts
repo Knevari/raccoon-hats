@@ -12,10 +12,12 @@ import { HatNameNotRegistered } from '../validation-rules/hat-name-not-registere
 import { IsValidColor } from '../validation-rules/is-valid-color.rule';
 
 import { HatSize, HatStyle, availableSizes, availableStyles } from '../types';
+import { ApiProperty } from '@nestjs/swagger';
 
 const fiveMb = 5 * 10 ** 6;
 
 export class CreateHatDto {
+  @ApiProperty({ example: 'Wool Mowbray' })
   @IsNotEmpty({ message: 'The hat name should not be empty.' })
   @IsString({ message: 'You should provide a valid name for the hat.' })
   @HatNameNotRegistered({
@@ -23,6 +25,7 @@ export class CreateHatDto {
   })
   name: string;
 
+  @ApiProperty({ example: 50 })
   @IsNotEmpty({ message: "The hat 'price' should not be empty." })
   @Type(() => Number)
   @IsInt({
@@ -31,6 +34,7 @@ export class CreateHatDto {
   })
   price: number;
 
+  @ApiProperty({ type: 'string', format: 'binary' })
   @IsNotEmpty({ message: 'You should provide a valid image for the hat.' })
   @IsFile({ message: "'image' should be a valid file" })
   @HasMimeType([
@@ -44,6 +48,7 @@ export class CreateHatDto {
   @MaxFileSize(fiveMb)
   image: MemoryStoredFile;
 
+  @ApiProperty({ example: ['L', 'XL', 'XXL'] })
   @IsNotEmpty({
     message: 'You need to define the list of sizes available for this hat.',
   })
@@ -53,6 +58,7 @@ export class CreateHatDto {
   })
   sizes: HatSize[];
 
+  @ApiProperty({ example: ['#F74D4D', '#3E1D58'] })
   @IsNotEmpty({
     message: 'You need to define the list of colors available for this hat.',
   })
@@ -60,6 +66,7 @@ export class CreateHatDto {
   @IsValidColor({ each: true })
   colors: string[];
 
+  @ApiProperty({ example: 'Fashion Caps' })
   @IsNotEmpty({
     message: "The hat 'style' should not be empty.",
   })
@@ -68,6 +75,10 @@ export class CreateHatDto {
   })
   style: HatStyle;
 
+  @ApiProperty({
+    example:
+      'Spectacular with autumn and winter wear, the Wool Mowbray by Kangol elevates pretty much any casual outfit. This premium quality pork pie hat is finished with perfection for that stylish and timeless look. It features a clean finish telescoping crown, a 1 3/4" brim, and a classic indent around the up-turned brim and tip of the hat. Refine your look today.',
+  })
   @IsNotEmpty({
     message: 'Provide clear details of the hat being registered.',
   })

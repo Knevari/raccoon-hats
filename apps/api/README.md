@@ -3,3 +3,4 @@
 - Custom Validation
 - Error Handling
 - Caching
+- How to access the Docs

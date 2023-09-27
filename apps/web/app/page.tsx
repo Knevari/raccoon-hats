@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import { ProductList } from "../components/product-list";
-import { Modal } from "../components/modal";
 
 import { useToggle } from "../hooks/useToggle";
 import { AddHatModal } from "../components/add-hat-modal";

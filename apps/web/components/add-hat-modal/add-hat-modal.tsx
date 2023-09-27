@@ -22,7 +22,7 @@ import {
 } from "../../contexts/hats/types";
 
 export interface AddHatFields extends Omit<Hat, "_id" | "imageUrl"> {
-  image: File;
+  image: File | null;
 }
 
 export function AddHatModal(props: Omit<ModalProps, "children">) {

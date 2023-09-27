@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 
 import { AppModule } from './app/app.module';
@@ -26,6 +27,17 @@ async function bootstrap() {
     origin: ['http://localhost:3000'],
     methods: 'GET,HEAD,PUT,POST,DELETE,OPTIONS',
   });
+
+  // Swagger
+  const config = new DocumentBuilder()
+    .setTitle('Raccoon Hats')
+    .setDescription('Open Hats API')
+    .setVersion('1.0')
+    .addTag('hats')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 

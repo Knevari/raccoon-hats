@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Hat } from './schemas/hat.schema';
 import { CreateHatDto } from './dto/create-hat.dto';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { UpdateHatDto } from './dto';
 
 @Injectable()
