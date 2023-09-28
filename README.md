@@ -1,81 +1,33 @@
-# Turborepo starter
+## Raccoon Hats
+<div align="center">
+  Built with ❤️ for Belvo's Technical Test
+</div>
 
-This is an official starter Turborepo.
+## Development Guide
+This project was created as a [TurboRepo](https://turbo.build/), using [pnpm](https://pnpm.io/) as it's package manager (because it's amazingly fast and very easy to use). Both frontend and backend are inside apps/ folder.
 
-## Using this example
+### Front End
+The frontend project was built using [Next.js 13](https://nextjs.org/blog/next-13). I'm styling my components using solely [TailwindCSS](https://tailwindcss.com/) and a few lines of regular CSS. There isn't much to the Tailwind configuration (tailwind.config.js) except for a few custom colors and shadows.
 
-Run the following command:
+### Back End
+The backend project was built using [NestJS](https://nestjs.com/), it's a very simple application with a basic CRUD, I took the freedom of adding a few custom validation rules. Images are being hosted on Cloudinary, so you do need  to have an API_KEY and API_SECRET which I'll provide within the .env file required to run the project. 
 
-```sh
-npx create-turbo@latest
+### How to start the project
+* Open your terminal, change into the root directory and type out
+
+```bash
+pnpm i
 ```
 
-## What's inside?
+* Run the development command
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```bash
 pnpm dev
 ```
 
-### Remote Caching
+This will start both frontend and backend applications for you, after ready, you can go and open up http://localhost:3000 on your favorite browser and check the website.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## API Docs
+If you wanna check out the API documentation, it's built along with the other projects in development mode, you can just go to http://localhost:8000/docs to see all available endpoints.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+<b>I hope you like my work 😊</b>

@@ -1,6 +1,0 @@
-- How to seed the database
-- Cloudinary
-- Custom Validation
-- Error Handling
-- Caching
-- How to access the Docs
