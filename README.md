@@ -1,6 +1,6 @@
 ## Raccoon Hats
 <div align="center">
-  Built with ❤️ for Belvo's Technical Test
+  Built with ❤️ for Belvo's Freelancing Technical Test
 </div>
 
 ## Development Guide
