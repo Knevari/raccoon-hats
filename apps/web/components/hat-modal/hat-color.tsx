@@ -13,6 +13,7 @@ export function HatColor({
 }: HatColorProps) {
   return (
     <input
+      data-testid="hat-color"
       type="color"
       defaultValue={color}
       disabled={!isEditable}

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { HatSize as HatSizeType } from "../../contexts/hats";
 import { cn } from "../../utils";
+import { HatSize as HatSizeType } from "../../contexts/hats";
 
 export interface HatSizeProps {
   size: HatSizeType;
@@ -34,6 +34,7 @@ export function HatSize({
 
   return (
     <strong
+      data-testid="hat-size"
       className={cn(
         "flex items-center justify-center h-9 border-2 border-text/40 text-text/40 rounded-lg px-2",
         activeClassNames

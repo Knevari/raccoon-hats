@@ -22,7 +22,10 @@ export function HatCard({ name, price, imageUrl, onClick }: HatCardProps) {
       <div className="mt-4 p-2 w-full">
         <h5 className="font-normal text-base text-left">{name}</h5>
         <div className="flex flex-col items-stretch justify-between flex-wrap w-full">
-          <h5 className="text-lg text-left text-text font-mono leading-6">
+          <h5
+            className="text-lg text-left text-text font-mono leading-6"
+            data-testid="hat-card-heading"
+          >
             ${price.toFixed(2)}
           </h5>
           <button

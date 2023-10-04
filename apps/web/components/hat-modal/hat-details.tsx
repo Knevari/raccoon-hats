@@ -6,6 +6,8 @@ import { HatSize } from "./hat-size";
 
 import { Hat } from "../../contexts/hats";
 
+export interface HatDetailsProps extends Omit<Hat, "_id" | "imageUrl"> {}
+
 export function HatDetails({
   name,
   style,
@@ -13,7 +15,7 @@ export function HatDetails({
   sizes,
   details,
   price,
-}: Hat) {
+}: HatDetailsProps) {
   return (
     <>
       <div>
